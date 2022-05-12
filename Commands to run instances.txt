@@ -1,0 +1,26 @@
+scp  -i "EC2 Tutorial.pem" script_5_1.sh script_5_10.sh script_5_100.sh script_5_1000.sh  script_5_10000.sh script_5_100000.sh script_5_1000000.sh script_10_1.sh script_10_10.sh script_10_100.sh script_10_1000.sh  script_10_10000.sh script_10_100000.sh script_10_1000000.sh script_15_1.sh script_15_10.sh script_15_100.sh script_15_1000.sh  script_15_10000.sh script_15_100000.sh script_15_1000000.sh   ec2-user@ec2-65-2-145-213.ap-south-1.compute.amazonaws.com:/home/ec2-user
+chmod +x script_5_1.sh script_5_10.sh script_5_100.sh script_5_1000.sh  script_5_10000.sh script_5_100000.sh script_5_1000000.sh script_10_1.sh script_10_10.sh script_10_100.sh script_10_1000.sh  script_10_10000.sh script_10_100000.sh script_10_1000000.sh script_15_1.sh script_15_10.sh script_15_100.sh script_15_1000.sh  script_15_10000.sh script_15_100000.sh script_15_1000000.sh
+
+ec2-cloudwatch-access
+
+sudo yum install amazon-cloudwatch-agent -y
+
+sudo vi /opt/aws/amazon-cloudwatch-agent/bin/config.json
+
+
+{
+   "metrics":{
+      "metrics_collected":{
+         "mem":{
+            "measurement":[
+               "mem_used"
+            ],
+            "metrics_collection_interval":30
+         }
+      }
+   }
+}
+
+
+
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
