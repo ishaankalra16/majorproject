@@ -1,3 +1,3 @@
 #!/bin/bash
-curl "https://app.inspekthor.com/minor/15" &
+curl "http://kalraandassociates.com/15" &
 wait
